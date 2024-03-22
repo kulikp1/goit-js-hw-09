@@ -72,7 +72,7 @@ function createGalleryMarkup(arr) {
     return arr.map(
         ({ preview, original, description }) =>
         `<li class="gallery-item">
-            <a class="gallery-link" href="${original} download="false"">
+            <a class="gallery-link" href="${original}" >
                 <img class="gallery-image" 
                 src="${preview}" 
                 alt="${description}"/>
@@ -91,22 +91,3 @@ const photosGallery = new SimpleLightbox('.gallery a', {
     
 });
 
-// const createGallery = arr => {
-//   return arr
-//     .map(
-//       ({ preview, original, description }) =>
-//         `
-//      <li class="gallery-item">
-//       <a class="gallery-link" href="${original} download="false" ">
-//          <img 
-//       class="gallery-image" 
-//       src="${preview}" 
-//       alt="${description}" 
-//       />
-//      </a>
-//     </li>`
-//     )
-//     .join('');
-// };
-
-// gallery.innerHTML = createGallery(images);
