@@ -1,4 +1,4 @@
-import SimpleLightbox from "simplelightbox";
+import SimpleLightbox from 'simplelightbox';
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const images = [
@@ -67,46 +67,46 @@ const images = [
   },
 ];
 
-const gallery = document.querySelector(".gallery");
-
-const createGallery = arr => {
-  return arr
-    .map(
-      ({ preview, original, description }) =>
-        `
-
-     <li class="gallery-item">
-      <a class="gallery-link" href="${original} download="false"">
-         <img 
-      class="gallery-image" 
-      src="${preview}" 
-      alt="${description}" 
-      />
-     </a>
-    </li>`
+const gallery = document.querySelector("ul.gallery");
+function createGalleryMarkup(arr) {
+    return arr.map(
+        ({ preview, original, description }) =>
+        `<li class="gallery-item">
+            <a class="gallery-link" href="${original} download="false"">
+                <img class="gallery-image" 
+                src="${preview}" 
+                alt="${description}"/>
+            </a>
+        </li>`
     )
     .join('');
-};
+    
+}
+gallery.insertAdjacentHTML('beforeend', createGalleryMarkup(images));
 
-gallery.innerHTML = createGallery(images);
+const photosGallery = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250,
+    
+});
 
+// const createGallery = arr => {
+//   return arr
+//     .map(
+//       ({ preview, original, description }) =>
+//         `
+//      <li class="gallery-item">
+//       <a class="gallery-link" href="${original} download="false" ">
+//          <img 
+//       class="gallery-image" 
+//       src="${preview}" 
+//       alt="${description}" 
+//       />
+//      </a>
+//     </li>`
+//     )
+//     .join('');
+// };
 
-  const handleClick = event => {
-  event.preventDefault();
-
-  const target = event.target;
-  if (target.nodeName !== 'IMG') return;
-
-  const largeImageURL = target.dataset.source;
-  const descriptionCurrent = target.alt;
-  console.log(largeImageURL);
-  console.log(descriptionCurrent);
-
-  const instance = basicLightbox.create(
-    `<div class="modal">
-    <img src="${largeImageURL}", alt="${descriptionCurrent}">
-    </div>`
-  );
-  instance.show();
-};
-gallery.addEventListener('click', handleClick);
+// gallery.innerHTML = createGallery(images);

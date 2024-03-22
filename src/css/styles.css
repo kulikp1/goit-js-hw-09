@@ -5,21 +5,40 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
 
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 24px;
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  justify-content: center;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+.gallery-image {
+  width: 360px;
+  height: 200px;
+}
+
+/* Task-2 form */
+.feedback-form {
+  width: 480px;
+}
+
+.feedback-form > label {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  font: inherit;
+  padding: 8px;
+}
+
+.feedback-form textarea {
+  resize: none;
 }
