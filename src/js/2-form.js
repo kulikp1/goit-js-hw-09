@@ -1,44 +1,48 @@
-const feedback_form_state = "feedback-msg";
 
-const form = document.querySelector(".feedback-form");
-const textarea = form.querySelector("textarea");
-const input = form.querySelector("input");
+const STORAGE_KEY = 'feedback-form-state';
 
-form.addEventListener("submit", formSubmit);
+const formEl = document.querySelector('.feedback-form');
+const textarea = formEl.querySelector('textarea');
+const email = formEl.querySelector('input[type="email"]');
+const btnEl = formEl.querySelector('button');
 
-textarea.addEventListener("input", onTextareaInput);
+formEl.addEventListener('input', onTextareaInput);
+formEl.addEventListener('submit', onSubmit);
+
 populateTextarea();
 
-input.addEventListener("input", onInput);
-
-function formSubmit(event) {
-    event.preventDefault();
-    console.log("send");
-
-    event.currentTarget.reset();
-    localStorage.removeItem(feedback_form_state);
-}
-
+let formData = {};
 function onTextareaInput(event) {
-    const formData = {
-        email: input.value,
-        message: event.target.value
-    };
-    localStorage.setItem(feedback_form_state, JSON.stringify(formData));
-}
+  formData = {
+    email: email.value.trim(),
+    message: textarea.value.trim(),
+  };
 
-function onInput(event) {
-    const formData = {
-        email: event.target.value,
-        message: textarea.value
-    };
-    localStorage.setItem(feedback_form_state, JSON.stringify(formData));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function populateTextarea() {
-    const savedData = JSON.parse(localStorage.getItem(feedback_form_state));
+    const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (savedData) {
-        input.value = savedData.email || '';
+        email.value = savedData.email || '';
         textarea.value = savedData.message || '';
     }
+}
+
+function onSubmit(event) {
+  event.preventDefault();
+
+  if (email.value.trim() !== '' && textarea.value.trim() !== '') {
+    const submittedData = {
+      email: email.value.trim(),
+      message: textarea.value.trim(),
+    };
+    console.log(submittedData);
+
+    localStorage.removeItem(STORAGE_KEY);
+    email.value = '';
+    textarea.value = '';
+  } else {
+    console.log('Обидва елементи форми мають бути заповнені');
+  }
 }

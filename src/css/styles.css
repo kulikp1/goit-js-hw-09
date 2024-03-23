@@ -23,12 +23,11 @@
 /* Task-2 form */
 .feedback-form {
   width: 480px;
+  margin-top: 20px;
 }
 
 .feedback-form > label {
   width: 100%;
-  margin-bottom: 16px;
-  padding: 8px;
   display: flex;
   flex-direction: column;
 }
@@ -36,9 +35,56 @@
 .feedback-form input,
 .feedback-form textarea {
   font: inherit;
-  padding: 8px;
 }
 
 .feedback-form textarea {
   resize: none;
+}
+.form-input {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 360px;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.form-textarea {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 360px;
+  height: 80px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+.form-input:hover,
+.form-textarea:hover {
+  border: 1px solid #000000;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border: 1px solid #808080;
+}
+
+.form-button {
+  margin-top: 16px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 95px;
+  height: 40px;
+  background: #4e75ff;
+  color: #fff;
+}
+.form-button:hover {
+  background: #6c8cff;
+}
+
+.form-descr {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
